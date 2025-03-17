@@ -13,6 +13,7 @@ const Member = require("./models/member")
 
 async function findMember() {
     try {
+        // Mencari member dengan nama "Starship Enterprise" serta memiliki email yang mengandung "boldly"
         const myQuery = await Member.findOne({ name: "Starship Enterprise" })
             .where("email").regex(/boldly/); 
         
