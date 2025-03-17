@@ -1,10 +1,8 @@
 const mongoose = require("mongoose");
-const memberSchema = require("./0202_Schema");
 
-mongoose.connect("mongodb://127.0.0.1:27017/db-untar-cafe", {
-    useNewUrlParser: true,
-    useUnifiedTopology: true // Menambahkan opsi ini untuk menghindari peringatan
-});
+mongoose.connect(
+    "mongodb://127.0.0.1:27017/db-untar-cafe",
+)
 
 const db = mongoose.connection;
 
@@ -12,14 +10,15 @@ db.once("open", () => {
     console.log("Successfully connected to MongoDB using Mongoose!");
 });
 
+const Member = require("./models/member")
 
-const updateMember = async () => {
+async function updateMember () {
     try {
         // Melakukan pembaruan
-        await memberSchema.updateOne({ name: "Starship Enterprise" }, { credit: 1031000 });
+        await Member.updateOne({ name: "Starship Enterprise" }, { credit: 1031000 });
 
         // Mencari anggota yang diperbarui
-        const data = await memberSchema.findOne({ name: "Starship Enterprise" });
+        const data = await Member.findOne({ name: "Starship Enterprise" });
         if (data) {
             console.log("Find One: " + JSON.stringify(data));
         }

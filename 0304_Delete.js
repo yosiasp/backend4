@@ -1,10 +1,8 @@
 const mongoose = require("mongoose");
-const Member = require("./0202_Schema");
 
-mongoose.connect("mongodb://127.0.0.1:27017/db-untar-cafe", {
-    useNewUrlParser: true,
-    useUnifiedTopology: true // Menambahkan opsi ini untuk menghindari peringatan
-});
+mongoose.connect(
+    "mongodb://127.0.0.1:27017/db-untar-cafe",
+)
 
 const db = mongoose.connection;
 
@@ -12,7 +10,9 @@ db.once("open", () => {
     console.log("Successfully connected to MongoDB using Mongoose!");
 });
 
-const deleteMember = async () => {
+const Member = require("./models/member")
+
+async function deleteMember () {
     try {
         // Menghapus anggota
         await Member.deleteOne({ name: "Starship Enterprise" });
