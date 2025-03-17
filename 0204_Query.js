@@ -9,11 +9,11 @@ db.once("open", () => {
     console.log("Succesfully connected to MongoDb using Mongoose!")
 });
 
-const Member = require("./0202_Schema")
+const Member = require("./models/member")
 
 async function findMember() {
     try {
-        const myQuery = await Member.findOne({ name: "Yosia Sipahutar" })
+        const myQuery = await Member.findOne({ name: "Starship Enterprise" })
             .where("email").regex(/boldly/); 
         
         if (myQuery) {
@@ -26,5 +26,6 @@ async function findMember() {
         console.error("Error finding member:", error);
     }
 }
+
 // Call function to find member
 findMember();

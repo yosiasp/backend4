@@ -10,7 +10,7 @@ db.once("open", () => {
     console.log("Successfully connected to MongoDB using Mongoose!");
 });
 
-const Member = require("./0202_Schema");
+const Member = require("./models/member")
 
 var FindOneQuery = Member.findOne({ name: "Starship Enterprise" });
 FindOneQuery.exec((err, data) => {
